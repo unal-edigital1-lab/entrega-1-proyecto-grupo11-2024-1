@@ -68,6 +68,8 @@ La caja negra principal del sistema es la siguiente
 
 A continuación se explicara la maquina de estados finitos de las emociones:
 
+En este diagram se aprecia como el `Tamagotchi` va a pasar por todos los diferentes estados para los que esta diseñado, esto lo logra por medio de tiempo en donde se tiene que tiene un estado base apenas comienza su funcionamiento esl cual es animo, despues de trancurrido cierta cantidad de tiempo ocurre que va a ir alternando entre estados, entonces lo que sucede es que habra un contador de tiempo que sera el encargado de determinar el estado en que se encuentre y cuando cambiar de estado, se parte desde un estado base que es animo (Feliz o Triste), como se aprecia en la imagen se tiene que despues de un tiempo del estado animo se pasa al estado sueño y posteriormente al de salud, sin embargo se aprecia que para ir del estado de sueño al de animo el contador vuelve a iniciar, esto se debe a que se genera alguna de las acciones designadas anteriormente, como lo es el de Dar_Comida, probocando que vuelva a animo y de ahi pueda pasar al estado energia. Adicionalmente se tiene un segundo contador que es lo que permitira cambios dentro del estado animo, el cual es un tiempo que indica cuanto tiempo pasa el tamagotchi sin recibir afecto y por ende pasa a estar en un estad alterno a animo el cual es troste.
+
 ![maquina de estados finitos](https://github.com/unal-edigital1-lab/entrega-1-proyecto-grupo11-2024-1/blob/main/Imagenes/maquina%20de%20estados%20finitos.jpeg)
 
 El estado inicial es el estado init, este se hace para mandar la señal para que la pantalla de inicie. Una vez hecho esto espera un tiempo para pasar a los estados de animo.
@@ -78,3 +80,10 @@ El gestor display se basa en los tiempos para la información que le será envia
 
 ![bloque de cajas para gestor display](https://github.com/unal-edigital1-lab/entrega-1-proyecto-grupo11-2024-1/blob/main/Imagenes/bloque%20de%20cajas%20para%20gestor%20display.jpeg)
 
+### Visualización
+A continuacion se muestra el diagrama de cajas negras para la visualizacion de la matriz de LEDs 8x8.
+![alt text](image-1.png)
+
+Para la caja negra de la visualizacion se tienen diferentes entradas  como lo son el reloj, reset, estado, inicio, etc.
+
+![alt text](image.png)
