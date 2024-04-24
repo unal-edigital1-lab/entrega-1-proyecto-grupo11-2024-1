@@ -82,8 +82,9 @@ El gestor display se basa en los tiempos para la información que le será envia
 
 ### Visualización
 A continuacion se muestra el diagrama de cajas negras para la visualizacion de la matriz de LEDs 8x8.
-![alt text](image-1.png)
+![image](https://github.com/unal-edigital1-lab/entrega-1-proyecto-grupo11-2024-1/assets/112878997/545de233-3314-4d66-b55d-e9d48cb791bd)
 
 Para la caja negra de la visualizacion se tienen diferentes entradas  como lo son el reloj, reset, estado, inicio, etc.
 
-![alt text](image.png)
+![image](https://github.com/unal-edigital1-lab/entrega-1-proyecto-grupo11-2024-1/assets/112878997/ad75c09d-8bda-4495-af07-c16fba0fae1f)
+
