@@ -57,6 +57,12 @@ En la caja de Tiempo, la salida del contador Tiempo del bloque Echo se compara c
 
 ## Visualización 
 
+### Caras del tamagotchi
+
+https://github.com/unal-edigital1-lab/entrega-1-proyecto-grupo11-2024-1/assets/104275525/9c62217a-6f50-416d-ab35-48fc5d4133bf
+
+
+
 Al interior del _**Diagrama de cajas negras general**_ se encuentran 2 diagramas claves para visualizar lo que esta ocurriendo con el **`Tamagotchi`**  son 2, una esta destinada para dar a conocer el **estado** en el que se encuentra el **`Tamagotchi`** y adicionalmente como se encuentra al interior de ese estado, para esto se emplean los _**Displays 7 Segmentos**_ que se encuentran en la _tarjeta de desarrollo_ en la que esta la `FPGA`.
 
 En el _**Diagrama de cajas negras de los Displays 7 Segmentos**_ se observa como tienen 3 entradas: _`Es_animo`_, _`cont_t`_ y _`t_sin_cariño`_, y 2 salidas: _`SSeg`_ y _`an`_, las entradas pasan por una primera caja interna que es _**Gestor Display**_ la cual va a reconocer el estado en el que se encuentra el **`Tamagotchi`**, y los tiempos que poseen cada uno de esos estados para conocer y asi conocer el nivel de satisfaccion del **`Tamagotchi`** todo eso va a llegar a una salida que sera entrada de _*Display*_ la cual ya se encarga de convertir esa entrada en visualizacion para el usuario por medio de los LEDs de los _**Displays 7 Segmentos**_ empleados, en los displays se apreciara un indicativo del estado y en una escala de 1 a 5 siendo 1 la peor valoracion del estado y 5 la mejor valoracion para que asi el usuario conozca de forma mas detallada el comportamiento de su **`Tamagotchi`** y llevarlo a tomar la decision si realizar acciones o no.
