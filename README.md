@@ -124,12 +124,3 @@ Estos estados de animo cambian segun 2 registros que son t_sin_cariño y cont_t,
 El gestor display se basa en los tiempos para la información que le será enviada a los display. Los números mayores a 5 serán lo que se represente como los casos criticos donde deberia ser 0, esto para que el display los lea y segun este los leds que prendera en los distintos anodos. El número 6 será sad, 7 sleepy, 8 sick, 9 tired. 
 
 ![bloque de cajas para gestor display](https://github.com/unal-edigital1-lab/entrega-1-proyecto-grupo11-2024-1/blob/main/Imagenes/bloque%20de%20cajas%20para%20gestor%20display.jpeg)
-
-### Visualización
-A continuacion se muestra el diagrama de cajas negras para la visualizacion de la matriz de LEDs 8x8.
-![image](https://github.com/unal-edigital1-lab/entrega-1-proyecto-grupo11-2024-1/assets/112878997/545de233-3314-4d66-b55d-e9d48cb791bd)
-
-Para la caja negra de la visualizacion se tienen diferentes entradas  como lo son el reloj, reset, estado, inicio, etc.
-
-![image](https://github.com/unal-edigital1-lab/entrega-1-proyecto-grupo11-2024-1/assets/112878997/ad75c09d-8bda-4495-af07-c16fba0fae1f)
-
