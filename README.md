@@ -1,9 +1,17 @@
 # Entrega 1 del proyecto WP01
-* Stewart Andres Antolinez Zapata
-* Natalia Andrea Dueñas Salamanca
-* Juan Diego Sáenz Ardila
+- Stewart Andres Antolinez Zapata `santolinez@unal.edu.co` 
+- Natalia Andrea Dueñas Salamanca `nduenass@unal.edu.co`
+- Juan Diego Saenz Ardila `jsaenza@unal.edu.co`
 ## Especificación detallada del sistema 
+
+## Botones y Sensores
+
+La parte que permite realizar acciones que alternen el estado del **`Tamagotchi`** es debido en gran medida esta _**Caja Negra**_ denominada como _**Sistema de Botones**_ desde las cuales se encuentran 5 modos de interaccion gracias a sus entradas (_`Testeo`_, _`rst`_, _`alimentacion`_, _`salud`_, y _`cerca`_) y sus salidas seran _`cont_t`_ y _`t_sin_cariño`_, al interior de _**Sistema de Botones**_ se encuentra un _**Divisor de frecuencia**_ que permite regular y definir los tiempos de las señales digitales que se generan con las acciones de las entradas y asi mismo gestionar las de salida, por otro lado el _**Gestor_Modo**_ distingue si el **`Tamagotchi`** vuelve a su modo inicial o entra en modo testeo, mientras que el gestor tiempo, tomas las acciones a realizar directamente con el **`Tamagotchi`** lo cual provoca que sus estados se alteren y de esa manera mejoren o empeoren dependiendo si se realizo la accion o no. 
+
+[Incluir imagenes]
+
 ### Componentes
+
 Botones
 * Reset: Reestablece el Tamagotchi a un estado inicial conocido al mantener pulsado el botón durante al menos 5 segundos. Este estado inicial simula el despertar de la mascota con salud óptima. Botón de la tarjeta de desarrollo de la FPGA.
 
