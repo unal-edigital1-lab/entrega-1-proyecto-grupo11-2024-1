@@ -4,26 +4,35 @@
 * Juan Diego Sáenz Ardila
 ## Especificación detallada del sistema 
 ### Componentes
-Botones
-* Reset: Reestablece el Tamagotchi a un estado inicial conocido al mantener pulsado el botón durante al menos 5 segundos. Este estado inicial simula el despertar de la mascota con salud óptima. Botón de la tarjeta de desarrollo de la FPGA.
+***Botones***
+* `Reset`: Reestablece el Tamagotchi a un estado inicial conocido al mantener pulsado el botón durante al menos 5 segundos. Este estado inicial simula el despertar de la mascota con salud óptima. Este sera un botón de la tarjeta de desarrollo de la FPGA.
 
-* Test: Activa el modo de prueba al mantener pulsado por al menos 5 segundos, permitiendo al usuario navegar entre los diferentes estados del Tamagotchi con cada pulsación. Boton de la tarjeta de desarrollo de la FPGA.
+* `Test`: Activa el modo de prueba al mantener pulsado por al menos 5 segundos, permitiendo al usuario navegar entre los diferentes estados del Tamagotchi con cada pulsación. Este sera un boton de la tarjeta de desarrollo de la FPGA.
 
-* Dar_comer: Disminuye un porcentaje del tiempo a los estados al pulsarse. Botón de la tarjeta de desarrollo de la FPGA.
+* `Boton_Comida`: Aumenta solo un nivel de comida cada vez que se accione el boton siempre y cuando no se encuentre en los extremos del estado, adicionalmente al aumento de nivel tambien permite obtener una visualización diferente por un determinado tiempo. Este sera un boton.
 
-* Medicina: Disminuye un porcentaje del tiempo a los estados al pulsarse. Botón de la tarjeta de desarrollo de la FPGA.
+* `Boton_Medicina`: Aumenta solo un nivel de salud cada vez que se accione el boton siempre y cuando no se encuentre en los extremos del estado, adicionalmente al aumento de nivel tambien permite obtener una visualización diferente por un determinado tiempo. Este sera un boton.
 
 
 ![Botones tarjeta de desarrollo FPGA](<Imagenes/Botones FPGA.png>)
 
-Sensores
-* Sensor Ultra sonido: cuando este sensor detecte algo menor a una distancia determinada disminuye el tiempo sin cariño el cual afecta el estado Animo si el Tamagotchi se encuentra despierto y si esta dormido se despierta. Sensor Ultrasonido HC-SR04.
+[INCLUIR IMAGEN DE PULSADORES]
+
+***Sensores***
+* `Sensor Ultra sonido`: cuando este sensor detecte algo menor a una distancia determinada aumenta el nivel de animo, y durante el tiempo que que el sensor este detectando algo este mostrara una visualización determinada para ese caso. Sensor Ultrasonido HC-SR04.
 
 
 
 ![[Link](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.puntoflotante.net%2FSENSOR-DISTANCIA-PROXIMIDAD-ULTRASONICO-HC-SR04.htm&psig=AOvVaw3XawL_13PjA-c5dnOsjxe6&ust=1713975300415000&source=images&cd=vfe&opi=89978449&ved=0CBUQ3YkBahcKEwi447_b3diFAxUAAAAAHQAAAAAQEQ)](Imagenes/Working-of-HC-SR04-Ultrasonic-Sensor-1024x394.jpg)
 
 ![[link](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.qbprofe.com%2Fautomatizacion-instrumentacion-industrial%2Ftutorial-de-arduino-con-sensor-ultrasonico-hc-sr04%2F&psig=AOvVaw3XawL_13PjA-c5dnOsjxe6&ust=1713975300415000&source=images&cd=vfe&opi=89978449&ved=0CBUQ3YkBahcKEwi447_b3diFAxUAAAAAHQAAAAAQIQ)](Imagenes/ww-PINES.jpg)
+
+* `Sensor de Luz`: cuando este sensor detecte sombra o una determinada ausencia de luz aumenta el nivel de decanso, y durante el tiempo que que el sensor este registrando esa ausencia de luz este mostrara una visualización determinada para ese caso. Modulo Sensor De Luz Con Ldr Fotoresistor.
+
+[INCLUIR IMAGEN DE FOTO CELDA]
+
+
+
 
 ### Diagrama de caja negra
 
