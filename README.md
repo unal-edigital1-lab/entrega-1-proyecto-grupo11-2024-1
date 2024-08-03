@@ -21,15 +21,15 @@ Botones
 
 * Test: Activa el modo de prueba al mantener pulsado por al menos 5 segundos, permitiendo al usuario navegar entre los diferentes estados del Tamagotchi con cada pulsación. Boton de la tarjeta de desarrollo de la FPGA.
 
-* Dar_comer: Disminuye un porcentaje del tiempo a los estados al pulsarse. Botón de la tarjeta de desarrollo de la FPGA.
+* Dar_comer: Al pulsarse activa aumenta el nivel de comida en 1 (de estar en 3, se mantiene igual) y activa un registro durante 5 segundos, durante el tiempo donde este registro este en 1, si esta en los estados hambre o desnutrido se tendra en la visualización una imagen que represente que el Tamaguchi esta comiendo. Botón de la tarjeta de desarrollo de la FPGA.
 
-* Medicina: Disminuye un porcentaje del tiempo a los estados al pulsarse. Botón de la tarjeta de desarrollo de la FPGA.
+* Medicina: Al pulsarse activa aumenta el nivel de salud en 1 (de estar en 3, se mantiene igual) y activa un registro durante 5 segundos, durante el tiempo donde el registro es 1, si esta en los estados tos o fiebre se tendra en la visualización una imagen que represente que el Tamaguchi esta recibiendo una pildora . Botón de la tarjeta de desarrollo de la FPGA.
 
 
 ![Botones tarjeta de desarrollo FPGA](<Imagenes/Botones FPGA.png>)
 
 Sensores
-* Sensor Ultra sonido: cuando este sensor detecte algo menor a una distancia determinada disminuye el tiempo sin cariño el cual afecta el estado Animo si el Tamagotchi se encuentra despierto y si esta dormido se despierta. Sensor Ultrasonido HC-SR04.
+* Sensor Ultra sonido: cuando este sensor detecte algo menor a una distancia determinada activa una señal, de estar en los estados triste o depresión mientras esta señal sea 1 se visualizara al tamaguchi recibiendo cariño, si la señal es 1 durante 15 segundos o más, el nivel de cariño sube en 1 (de estar en 3, se mantiene igual) . Sensor Ultrasonido HC-SR04.
 
 
 
