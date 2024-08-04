@@ -40,15 +40,15 @@ La parte que permite realizar acciones que alternen el estado del **`Tamagotchi`
 
 * `Sensor de Luz`: cuando este sensor detecte sombra o una determinada ausencia de luz aumenta el nivel de decanso, y durante el tiempo que que el sensor este registrando esa ausencia de luz este mostrara una visualización determinada para ese caso. Modulo Sensor De Luz Con Ldr Fotoresistor.
 
-[INCLUIR IMAGEN DE FOTO CELDA]
+![Modulo Sensor De Luz Con Ldr Fotoresistor](<Imagenes/Modulo Sensor De Luz Con Ldr Fotoresistor.jpg>)
 
 
 
 
 ### Diagrama de caja negra
 
-![Caja negra](<Imagenes/Caja negra.png>)
-
+#### Ultra Sonido
+![Ultra_Sonido Caja Negra](<Imagenes/Ultra_Sonido Caja Negra.png>)
 
 Como se puede observar en el diagrama de la caja negra, el módulo del sensor tiene como entradas Enable, clk, Echo, y como salidas Trigger, Done y Led. Dentro de la caja, se encuentran bloques internos que desempeñan funciones específicas, tales como Trigger, Echo y Tiempo.
 
@@ -56,16 +56,22 @@ En la caja de Trigger, se utiliza la señal de reloj (clk) y la señal de habili
 
 La ecuación utilizada para calcular este tiempo máximo es: T=cm×0.01715. Una vez que el contador alcanza este valor, vuelve a cero para iniciar un nuevo ciclo de medición.
 
-![Trigger](<Imagenes/Trigger.png>)
-
-
 En la caja de Echo, se utiliza la señal de reloj (clk) y la señal de retorno del eco (Echo). En cada flanco de subida del pulso de reloj, si Echo está activo, se suma 1 al contador de Tiempo. Mientras Echo esté activo, la señal de Done permanece en 0, indicando que la medición está en curso. Cuando la señal de Echo finaliza, Done cambia a 1 y el contador de Tiempo se reinicia a 0.
-
-![Echo](<Imagenes/Echo.png>)
 
 En la caja de Tiempo, la salida del contador Tiempo del bloque Echo se compara con el valor de 583. Esta comparación se realiza porque ese es el tiempo en el que se determina que la medición es válida si se reemplaza la ecuación T = cm * 0.01715 por 10. Si el valor de Tiempo está en el rango de 0 a 583, el LED se enciende, indicando que la distancia medida está dentro del rango aceptable.
 
-![Tiempo](<Imagenes/Tiempo.png>)
+#### Botones
+
+![Boton_AR Caja Negra](<Imagenes/Boton_AR Caja Negra.png>)
+
+
+![Botones_antirrebote Caja Negra](<Imagenes/Botones_antirrebote Caja Negra.jpg>)
+#### Modos
+
+![Modo_Primitivo Caja Negra](<Imagenes/Modo_Primitivo Caja Negra.png>)
+
+![Modos Caja Negra](<Imagenes/Modos Caja Negra.png>)
+
 
 ## Visualización 
 
