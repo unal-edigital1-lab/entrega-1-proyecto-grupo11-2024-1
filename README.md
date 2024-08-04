@@ -37,7 +37,7 @@
 
 * `Pantalla ILI9341`: .................
 
-
+![ILI9341](Imagenes/ILI9341.jpg)
 
 # tamagotchi
 
@@ -67,6 +67,18 @@ En la caja de Echo, se utiliza la señal de reloj (clk) y la señal de retorno d
 
 En la caja de Tiempo, la salida del contador Tiempo del bloque Echo se compara con el valor de 583. Esta comparación se realiza porque ese es el tiempo en el que se determina que la medición es válida si se reemplaza la ecuación T = cm * 0.01715 por 10. Si el valor de Tiempo está en el rango de 0 a 583, el LED se enciende, indicando que la distancia medida está dentro del rango aceptable.
 
+
+
+#### Modos
+
+![Modo_Primitivo Caja Negra](<Imagenes/Modo_Primitivo Caja Negra.png>)
+
+
+Los modos poseen 2 cosas de manera esencial que va con un objetivo de definir el comportamiento de la salida *Nivel* la cual corresponde a la **Caja negra** de `Modo_Primitivo`, la cual posee un *activo* que permitira que ese modo suba o baje de *Nivel*, por otro lado junto al *clk* permitira que despues de un determinado tiempo el modo baje de *Nivel* de uno en uno mientras que gracias a *Entrada_Sube_Nivel* como su nombre lo indica aumenta el *Nivel* de uno en uno siempre y cuando no se encuentre en el *Nivel* maximo.
+
+![Modos Caja Negra](<Imagenes/Modos Caja Negra.png>)
+
+
 #### Botones
 
 ![Boton_AR Caja Negra](<Imagenes/Boton_AR Caja Negra.png>)
@@ -76,16 +88,6 @@ La **Caja negra** que lleva por nombre `Boton_AR` se debe a que es la encargada 
 ![Botones_antirrebote Caja Negra](<Imagenes/Botones_antirrebote Caja Negra.jpg>)
 
 Utilizando lo realizado en `Boton_AR` se logra filtrar todo el ruido que tienen todos los botones que se emplearan como lo son el *B_Reset*, *B_Test*, *B_Energia* y *B_Medicina*, con lo cual para los botones *B_Reset* y *B_Test* basta con cambiar un parametro para que se envie el registro de su respectiva señal (*Senal_Reset* y *Senal_Test*) asi como se indica en el funcionamiento del componente, por otro lado las señales de los botones que ya involucran los modos del **`tamagorchi`** pasan de señal de entrada a una de salida en un tiempo mas inmediato.
-
-#### Modos
-
-![Modo_Primitivo Caja Negra](<Imagenes/Modo_Primitivo Caja Negra.png>)
-
-
-Los modos poseen 2 cosas de manera esencial que va con un objetivo de definir el comportamiento de la salida *Nivel* 
-
-![Modos Caja Negra](<Imagenes/Modos Caja Negra.png>)
-
 
 ## Plan inicial de la arquitectura del sistema
 
