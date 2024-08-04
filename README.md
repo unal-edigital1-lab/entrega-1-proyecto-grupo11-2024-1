@@ -16,18 +16,13 @@ La parte que permite realizar acciones que alternen el estado del **`Tamagotchi`
 
 ### Componentes
 ***Botones***
-* `Reset`: Reestablece el Tamagotchi a un estado inicial conocido al mantener pulsado el botón durante al menos 5 segundos. Este estado inicial simula el despertar de la mascota con salud óptima. Este sera un botón de la tarjeta de desarrollo de la FPGA.
-
-Botones
-* Reset: Reestablece el Tamagotchi a un estado inicial conocido al mantener pulsado el botón durante al menos 5 segundos. Este estado inicial simula el despertar de la mascota con salud óptima. Botón de la tarjeta de desarrollo de la FPGA.
+* `Reset`: Para restablecer el Tamagotchi a un estado inicial conocido, simplemente mantén pulsado el botón durante al menos 5 segundos. Este estado inicial simula el despertar de la mascota con salud óptima. El botón necesario para realizar esta acción se encuentra en la tarjeta de desarrollo de la FPGA.
 
 * `Test`: Activa el modo de prueba al mantener pulsado por al menos 5 segundos, permitiendo al usuario navegar entre los diferentes estados del Tamagotchi con cada pulsación. Este sera un boton de la tarjeta de desarrollo de la FPGA.
 
-* `Boton_Comida`: Aumenta solo un nivel de comida cada vez que se accione el boton siempre y cuando no se encuentre en los extremos del estado, adicionalmente al aumento de nivel tambien permite obtener una visualización diferente por un determinado tiempo. Este sera un boton.
-* Dar_comer: Al pulsarse activa aumenta el nivel de comida en 1 (de estar en 3, se mantiene igual) y activa un registro durante 5 segundos, durante el tiempo donde este registro este en 1, si esta en los estados hambre o desnutrido se tendra en la visualización una imagen que represente que el Tamaguchi esta comiendo. Botón de la tarjeta de desarrollo de la FPGA.
+* `Boton_Comida`: al presionar el botón en la tarjeta de desarrollo de la FPGA. Cada vez que lo hagas, el nivel de comida aumentará en 1 (si no está en el nivel máximo). Además, durante los siguientes 5 segundos, verás una visualización especial: si tu Tamagotchi está hambriento o desnutrido, aparecerá una imagen que representa que está comiendo.
 
-* `Boton_Medicina`: Aumenta solo un nivel de salud cada vez que se accione el boton siempre y cuando no se encuentre en los extremos del estado, adicionalmente al aumento de nivel tambien permite obtener una visualización diferente por un determinado tiempo. Este sera un boton.
-* Medicina: Al pulsarse activa aumenta el nivel de salud en 1 (de estar en 3, se mantiene igual) y activa un registro durante 5 segundos, durante el tiempo donde el registro es 1, si esta en los estados tos o fiebre se tendra en la visualización una imagen que represente que el Tamaguchi esta recibiendo una pildora . Botón de la tarjeta de desarrollo de la FPGA.
+* `Boton_Medicina`: al presionar el botón destinado para cuidar la salud. Cada vez que lo hagas, el nivel de salud aumentará en 1 (si no está en el nivel máximo). Además, durante los siguientes 5 segundos, verás una visualización especial: si tu Tamagotchi está en los estados de tos o fiebre, aparecerá una imagen que representa que está recibiendo una píldora para mejorar su salud. 
 
 
 ![Botones tarjeta de desarrollo FPGA](<Imagenes/Botones FPGA.png>)
@@ -35,9 +30,7 @@ Botones
 [INCLUIR IMAGEN DE PULSADORES]
 
 ***Sensores***
-* `Sensor Ultra sonido`: cuando este sensor detecte algo menor a una distancia determinada aumenta el nivel de animo, y durante el tiempo que que el sensor este detectando algo este mostrara una visualización determinada para ese caso. Sensor Ultrasonido HC-SR04.
-Sensores
-* Sensor Ultra sonido: cuando este sensor detecte algo menor a una distancia determinada activa una señal, de estar en los estados triste o depresión mientras esta señal sea 1 se visualizara al tamaguchi recibiendo cariño, si la señal es 1 durante 15 segundos o más, el nivel de cariño sube en 1 (de estar en 3, se mantiene igual) . Sensor Ultrasonido HC-SR04.
+* `Sensor Ultra sonido`: Utiliza el sensor de ultrasonido HC-SR04. Cuando este sensor detecte algo a una distancia menor a un umbral determinado, aumentará el nivel de ánimo de tu mascota virtual. Además, durante el tiempo en que el sensor esté activo y detectando objetos cercanos, verás una visualización específica en la pantalla. Pero eso no es todo: si tu Tamagotchi se encuentra en los estados de tristeza o depresión, cuando la señal del sensor sea 1, verás una imagen que representa a tu Tamagotchi recibiendo cariño. Si esta señal persiste durante 15 segundos o más, el nivel de cariño subirá en 1 (a menos que ya esté en el nivel máximo).
 
 
 
