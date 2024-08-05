@@ -1,10 +1,11 @@
 # Entrega 1 del proyecto WP01
 - Stewart Andres Antolinez Zapata `santolinez@unal.edu.co` 
 - Natalia Andrea Dueñas Salamanca `nduenass@unal.edu.co`
-- Juan Diego Saenz Ardila `jsaenza@unal.edu.co`
-## Especificación detallada del sistema 
+- Juan Diego Saenz Ardila `jsaenza@unal.edu.co` 
 
-### Componentes
+
+
+## Componentes de Interacción
 **Botones**
 * `Reset`: Para restablecer el Tamagotchi a un estado inicial conocido, simplemente mantén pulsado el botón durante al menos 5 segundos. Este estado inicial simula el despertar de la mascota con salud óptima. El botón necesario para realizar esta acción se encuentra en la tarjeta de desarrollo de la FPGA.
 
@@ -33,7 +34,7 @@
 
 ![Modulo Sensor De Luz Con Ldr Fotoresistor](<Imagenes/Modulo Sensor De Luz Con Ldr Fotoresistor.jpg>)
 
-### Visualización
+## Componentes de Visualización
 
 * `Pantalla ILI9341`: .................
 
@@ -43,23 +44,23 @@
 
 ## Caja Negra
 
-![caja negra](https://github.com/unal-edigital1-lab/entrega-1-proyecto-grupo11-2024-1/blob/main/Imagenes/caja_negra_funcionamiento.png)
+![caja negra](Imagenes/caja_negra_funcionamiento.png)
 
 
 ## Maquina de Estados
 
-![caja negra](https://github.com/unal-edigital1-lab/entrega-1-proyecto-grupo11-2024-1/blob/main/Imagenes/MEF_resumida.png)
+![caja negra](Imagenes/MEF_resumida.png)
 
 La maquina de estados finitos parte desde un estado IDLE donde recibe información de todos los sensores. Si uno de los Niveles baja a 2 va al estado de este nivel, es necesario aclarar que estos estados tienen 3 estados internos que seran explicados en la maquina de estados finitos visto de una forma más especifica (según el estado el parametró de visualización que sera entregado) , la única forma de salir es volviendo al Nivel 3 por medio de los sensores o utilizando el boton reset ( o el boton test como se vera a continuación) . Si el nivel en uno de los 4 estados internos permanece en 0 durante más de 59 segundos, este morira siendo el boton reset la única forma de volver. 
 
-![caja negra](https://github.com/unal-edigital1-lab/entrega-1-proyecto-grupo11-2024-1/blob/main/Imagenes/MEF_general.png)
+![caja negra](Imagenes/MEF_general.png)
 
 Observando cada uno de los estados generales se compone de 3 estados, uno transitorio que se activa al utilizar el sensor de ese respectivo estado, y los otros 2 dependientes del nivel, en el estado donde el Nivel es 0, se activa el contador muerte. El contador retornara a 0, de presiona de estar en uno de los estados transitorios. Es importante aclarar que en el caso de animo y sueño si se puede devolver al peor estado, esto es porque funcionan con sensores y no con botones.
 
 En esta forma especifica se muestra que el boton test también controla el comportamiento, este se mueve entre cada uno de los estados internos para después volver a IDLE, por medio del registro Val_prev cambiara a otros 3 estados distintos al ser presionado.
-### Diagramas de caja negra de los componentes y maquinas de Estado
+## Diagramas de caja negra de los componentes y maquinas de Estado
 
-#### Ultra Sonido
+### Ultra Sonido
 ![Ultra_Sonido Caja Negra](<Imagenes/Ultra_Sonido Caja Negra.png>)
 
 Como se puede observar en el diagrama de la caja negra, el módulo del sensor tiene como entradas Enable, clk, Echo, y como salidas Trigger, Done y Led. Dentro de la caja, se encuentran bloques internos que desempeñan funciones específicas, tales como Trigger, Echo y Tiempo.
@@ -70,11 +71,13 @@ La ecuación utilizada para calcular este tiempo máximo es: T=cm×0.01715. Una 
 
 En la caja de Echo, se utiliza la señal de reloj (clk) y la señal de retorno del eco (Echo). En cada flanco de subida del pulso de reloj, si Echo está activo, se suma 1 al contador de Tiempo. Mientras Echo esté activo, la señal de Done permanece en 0, indicando que la medición está en curso. Cuando la señal de Echo finaliza, Done cambia a 1 y el contador de Tiempo se reinicia a 0.
 
+![Ultra_Sonido Estados](<Imagenes/Ultra_Sonido Estados.png>)
+
 En la caja de Tiempo, la salida del contador Tiempo del bloque Echo se compara con el valor de 583. Esta comparación se realiza porque ese es el tiempo en el que se determina que la medición es válida si se reemplaza la ecuación T = cm * 0.01715 por 10. Si el valor de Tiempo está en el rango de 0 a 583, el LED se enciende, indicando que la distancia medida está dentro del rango aceptable.
 
 
 
-#### Modos
+### Modos
 
 ![Modo_Primitivo Caja Negra](<Imagenes/Modo_Primitivo Caja Negra.png>)
 
@@ -83,8 +86,9 @@ Los modos poseen 2 cosas de manera esencial que va con un objetivo de definir el
 
 ![Modos Caja Negra](<Imagenes/Modos Caja Negra.png>)
 
+Esta parte convergen bastantes compornentes debido a que `Modos` utiliza otras cajas negras adicionales las cuales son `Botones_antirrebote` y `Modo_Primitivo` que permitiran unir el funcinamiento de los botones, los sensores y que estos cumplan la funcinalidad para subir el nivel, pero que en tal caso que no se utilicen bajen el nivel, y esto ya se cumple para todos los modos que pasa el tamagotchi, tal y como se aprecia tanto en las entradas y salidas de la caja negra de `Modos`.
 
-#### Botones
+### Botones
 
 ![Boton_AR Caja Negra](<Imagenes/Boton_AR Caja Negra.png>)
 
@@ -94,12 +98,15 @@ La **Caja negra** que lleva por nombre `Boton_AR` se debe a que es la encargada 
 
 Utilizando lo realizado en `Boton_AR` se logra filtrar todo el ruido que tienen todos los botones que se emplearan como lo son el *B_Reset*, *B_Test*, *B_Energia* y *B_Medicina*, con lo cual para los botones *B_Reset* y *B_Test* basta con cambiar un parametro para que se envie el registro de su respectiva señal (*Senal_Reset* y *Senal_Test*) asi como se indica en el funcionamiento del componente, por otro lado las señales de los botones que ya involucran los modos del **`tamagorchi`** pasan de señal de entrada a una de salida en un tiempo mas inmediato.
 
-#### ILI9341
+### ILI9341
+
+![ILI9341 Caja Negra](<Imagenes/ILI9341 Caja Negra.png>)
+
 **SPI master:** En esta "caja negra" se implementa el protocolo SPI, generando las señales necesarias para el funcionamiento del ILI9341. `spi_mosi`es la señal por la cual se envían los datos bit a bit. `spi_sck` genera los pulsos de reloj que sincronizan el envío de datos por MOSI; cada bit de dato corresponde a un pulso de reloj, y en este caso, se envían datos de 16 bits, lo que requiere 16 pulsos. `spi_cs` selecciona al esclavo específico con el que se desea comunicar, ya que SPI es una configuración maestro-esclavo que puede manejar varios esclavos; en este caso, `spi_cs`  se activa cuando se quiere utilizar la pantalla. Por último, `spi_dc` indica si los bits enviados por MOSI son datos (`spi_cs = 1`) o comandos (`spi_cs = 0`). La entrada `input_data` es de 9 bits, donde el bit más significativo indica si es un comando o un dato, y los 8 bits restantes representan el contenido. `available_data` indica la disponibilidad de datos para enviar, mientras que `idle` muestra si el sistema está inactivo, proporcionando retroalimentación para sincronizar la generación de los pulsos de reloj en `spi_sck` y el envío de datos.
 
 **Controlador:** La caja negra del controlador contiene internamente el SPI master, que es el encargado de controlar qué datos se envían a la pantalla. Por esta razón, se utiliza una máquina de estados dentro del controlador, ya que su operación requiere varias etapas.
 
-[Imagen máquina de estados]
+
 
 El estado inicial es `START`, que cambia inmediatamente a `SEND_INIT` a menos que haya una señal de `rst`. Los estados `SEND_INIT` (primer comando para reiniciar la pantalla), `SEND_CONFIG` (una lista de 84 comandos a ejecutar guardados en `INIT_SEQ_LEN`), `DISPLAY_ON` (configuración para encender la pantalla), `SET_ROTATION` (configuración para la rotación de la pantalla) y `SET_ADDRESS` (configuración para establecer la dirección del píxel) se utilizan para configurar inicialmente la pantalla. En todos estos estados, `available_data = 1`, indicando que hay datos disponibles para enviar.
 
