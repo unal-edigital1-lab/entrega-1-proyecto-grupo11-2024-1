@@ -36,11 +36,12 @@
 
 ## Componentes de Visualización
 
-* `Pantalla ILI9341`: .................
+* `Pantalla ILI9341`: 
+El componente ILI9341 es una pantalla TFT que se utiliza en el proyecto para mostrar los distintos estados del Tamagotchi. Cada vez que el Tamagotchi cambia de estado, la pantalla ILI9341 actualiza su visualización para reflejar estos cambios, proporcionando una interfaz gráfica interactiva que mejora la experiencia del usuario con el juego. Esta visualización dinámica permite a los jugadores observar el estado actual del Tamagotchi, facilitando una interacción más inmersiva y efectiva con el juego.
 
 ![ILI9341](Imagenes/ILI9341.jpg)
 
-# tamagotchi
+# Tamagotchi
 
 ## Caja Negra
 
@@ -106,10 +107,11 @@ Utilizando lo realizado en `Boton_AR` se logra filtrar todo el ruido que tienen 
 
 **Controlador:** La caja negra del controlador contiene internamente el SPI master, que es el encargado de controlar qué datos se envían a la pantalla. Por esta razón, se utiliza una máquina de estados dentro del controlador, ya que su operación requiere varias etapas.
 
-
+![ILI9341 Maquina de estados](<Imagenes/ILI9341 Maquina de estados.png>)
 
 El estado inicial es `START`, que cambia inmediatamente a `SEND_INIT` a menos que haya una señal de `rst`. Los estados `SEND_INIT` (primer comando para reiniciar la pantalla), `SEND_CONFIG` (una lista de 84 comandos a ejecutar guardados en `INIT_SEQ_LEN`), `DISPLAY_ON` (configuración para encender la pantalla), `SET_ROTATION` (configuración para la rotación de la pantalla) y `SET_ADDRESS` (configuración para establecer la dirección del píxel) se utilizan para configurar inicialmente la pantalla. En todos estos estados, `available_data = 1`, indicando que hay datos disponibles para enviar.
 
 En el estado `FRAME_LOOP`, como su nombre lo indica, se realiza un bucle por cada pixel (76800) recibir los 16 bits en `input_data`. Durante el ciclo positivo del reloj `dataclk`, se envían al SPI master los 8 bits más significativos, y durante el ciclo negativo, los 8 bits menos significativos. Estos 8 bits se concatenan con un bit de valor 1 en el bit más significativo, ya que siempre se están enviando datos, lo que hace que `input_data` sea de 9 bits. Cuando se recibe la señal `frame_done` (es decir, se han leído todos los píxeles), la FSM transita a `WAIT_FRAME`. Si se cambia la imagen, se sale de `WAIT_FRAME` y se regresa a `FRAME_LOOP`. Por último, en todos los estados de `WAIT`, `available_data` es 0, ya que no hay datos para enviar en esos momentos.
 
-**ILI9341**
+**Top ILI9341**
+En esta sección se observan tres módulos internos. El primero es un divisor de frecuencia que reduce la frecuencia del reloj de la FPGA de 50 MHz a 20 MHz, para que sea compatible con los demás módulos internos. Luego, la caja de lectura y envío de memoria se encarga de leer un archivo `.txt` de 76800 líneas, donde cada línea contiene el color RGB de un píxel, escrito en formato hexadecimal de 16 bits. Este módulo recorre cada línea y envía el valor correspondiente al controlador a través de la salida `current_pixel`. Cada valor se transmite en respuesta a un flanco de subida de la señal `data_clk`. Un contador se utiliza para verificar que se hayan procesado los 76800 píxeles y, al finalizar, se envía la señal `frame_done`. Por último, las salidas de este módulo se conectan a la pantalla, permitiendo la visualización de los datos en ella.
