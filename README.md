@@ -145,6 +145,6 @@ Para la implementación, se pasó cada imagen a formato RGB mediante un código 
 
 Luego esto se pega en `Imagenes.txt`que es la memoria que esta leyendo la FPGA. Para implementarlo en el proyecto se hizo la siguiente tabla.
 
-<img src="Imagenes/EstadosImagenes.png" alt="EstadosImagenes" width="300">
+<img src="Imagenes/EstadosImagenes.png" alt="EstadosImagenes" width="400">
 
 De esta manera, al momento de realizar el cambio de imagen, el valor de `pixel_memoria` se ajusta para apuntar a la línea donde se definió la nueva imagen. Una vez que se completa la escritura de la línea modificada, el offset vuelve a 0, y el resto de la imagen sigue mostrándose con los datos de IDLE. Este enfoque fue diseñado para optimizar el uso de la memoria en la FPGA, minimizando el espacio necesario para almacenar las imágenes.
