@@ -52,13 +52,12 @@ El componente ILI9341 es una pantalla TFT que se utiliza en el proyecto para mos
 
 ![caja negra](Imagenes/MEF_resumida.png)
 
-La maquina de estados finitos parte desde un estado IDLE donde recibe información de todos los sensores. Si uno de los Niveles baja a 2 va al estado de este nivel, es necesario aclarar que estos estados tienen 3 estados internos que seran explicados en la maquina de estados finitos visto de una forma más especifica (según el estado el parametró de visualización que sera entregado) , la única forma de salir es volviendo al Nivel 3 por medio de los sensores o utilizando el boton reset ( o el boton test como se vera a continuación) . Si el nivel en uno de los 4 estados internos permanece en 0 durante más de 59 segundos, este morira siendo el boton reset la única forma de volver. 
-
+La maquina de estados finitos parte desde un estado IDLE donde recibe información de todos los sensores y botones . Si el nivel de cualquier modo baja a 2 va al estado de este nivel (el orden de prioridad es: comida, salud, descanso y animo) . Es necesario aclarar que estos estados tienen 3 estados internos que seran explicados en la maquina de estados finitos visto de una forma más detallada (según el estado el parametró de visualización que sera entregado). La única forma de volver a IDLE sin el reset o el test, es volviendo a tener un nivel igual a 3 en ese estado. 
 ![caja negra](Imagenes/MEF_general.png)
 
-Observando cada uno de los estados generales se compone de 3 estados, uno transitorio que se activa al utilizar el sensor de ese respectivo estado, y los otros 2 dependientes del nivel, en el estado donde el Nivel es 0, se activa el contador muerte. El contador retornara a 0, de presiona de estar en uno de los estados transitorios. Es importante aclarar que en el caso de animo y sueño si se puede devolver al peor estado, esto es porque funcionan con sensores y no con botones.
+Observando cada uno de los estados generales se compone de 3 estados, uno transitorio que se activa al utilizar el sensor o boton de ese respectivo estado, y los otros 2 dependientes del nivel, en el estado donde el Nivel es 0 se tenia considerada visualización distinta, sin embargo, debido a los recursos de la FPGA esta opción fue descartada. Cada estado transitorio se mantendrá durante 5 segundos, para luego cambiar al estado correspondiente segun el nuevo nivel.
 
-En esta forma especifica se muestra que el boton test también controla el comportamiento, este se mueve entre cada uno de los estados internos para después volver a IDLE, por medio del registro Val_prev cambiara a otros 3 estados distintos al ser presionado.
+En esta forma especifica se muestra que el boton test también controla el comportamiento, este se mueve entre cada uno de los estados internos para después volver a IDLE, por medio del registro cambio_test cambiara a otros 3 estados distintos al ser presionado, esto si previamente ya se ha activado el modo test, pulsandolo por 5 segundos.
 ## Diagramas de caja negra de los componentes y maquinas de Estado
 
 ### Ultra Sonido
