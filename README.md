@@ -61,13 +61,14 @@ En esta forma especifica se muestra que el boton test también controla el compo
 # Diagramas de caja negra de los componentes y maquinas de Estado
 
 ## Ultra Sonido
-![Ultra_Sonido Caja Negra](<Imagenes/Ultra_Sonido Caja Negra.png>)
+<img src="Imagenes/Ultra_Sonido Caja Negra.png" alt="Ultra_Sonido Caja Negra" width="500">
 
 En el diagrama de la caja negra, se observa el módulo del sensor con las entradas `Enable`, `clk`, `Echo` y las salidas `Trigger`, `Done` y `Led`. Este sistema se ha diseñado para detectar objetos mediante ultrasonido. Originalmente, en la caja de Trigger, el contador incrementaba con el reloj (clk) mientras la señal Trigger estaba activada por un tiempo determinado (hasta un valor de 10), y luego se desactivaba tras alcanzar un valor máximo basado en la distancia calculada de 400 cm. En la caja de Echo, el sistema medía cuánto tiempo estaba activa la señal `Echo` y, cuando esta terminaba, la señal Done indicaba el fin de la medición.
 
 Sin embargo, el sistema no esperaba que el eco retornara antes de volver a enviar una nueva señal de Trigger, lo que generaba problemas de sincronización. Para mejorar este comportamiento, se decidió implementar una máquina de estados, permitiendo una mejor coordinación entre las señales Trigger y Echo. Con la máquina de estados, se asegura que el sistema espere correctamente a que el eco regrese antes de iniciar un nuevo ciclo de medición, mejorando la precisión en la detección de objetos.
 
-![Ultra_Sonido Estados](<Imagenes/Ultra_Sonido Estados.png>)
+<img src="Imagenes/Ultra_Sonido Estados.png" alt="Ultra_Sonido Estados" width="500">
+
 
 El sistema de ultrasonido comienza en el estado IDLE. Desde allí, pasa directamente al estado TRIGGER, donde se realiza un conteo en cada flanco de subida del reloj. Mientras el contador alcanza un valor de 10, la salida Trigger se mantiene activada. Después de pasar 10 microsegundos, el contador se resetea y se establece trigger_done = 1, lo que provoca que el sistema avance al estado WAIT.
 
@@ -80,23 +81,22 @@ Cuando la señal `Echo` se apaga, el sistema regresa al estado IDLE, y el ciclo 
 
 
 ## Modos
-
-![Modo_Primitivo Caja Negra](<Imagenes/Modo_Primitivo Caja Negra.png>)
+<img src="Imagenes/Modo_Primitivo Caja Negra.png" alt="Modo_Primitivo Caja Negra" width="500">
 
 
 Los modos poseen 2 cosas de manera esencial que va con un objetivo de definir el comportamiento de la salida *Nivel* la cual corresponde a la **Caja negra** de `Modo_Primitivo`, la cual posee un *activo* que permitira que ese modo suba o baje de *Nivel*, por otro lado junto al *clk* permitira que despues de un determinado tiempo el modo baje de *Nivel* de uno en uno mientras que gracias a *Entrada_Sube_Nivel* como su nombre lo indica aumenta el *Nivel* de uno en uno siempre y cuando no se encuentre en el *Nivel* maximo.
 
-![Modos Caja Negra](<Imagenes/Modos Caja Negra.png>)
+<img src="Imagenes/Modos Caja Negra.png" alt="Modos Caja Negra" width="500">
 
 Esta parte convergen bastantes compornentes debido a que `Modos` utiliza otras cajas negras adicionales las cuales son `Botones_antirrebote` y `Modo_Primitivo` que permitiran unir el funcinamiento de los botones, los sensores y que estos cumplan la funcinalidad para subir el nivel, pero que en tal caso que no se utilicen bajen el nivel, y esto ya se cumple para todos los modos que pasa el tamagotchi, tal y como se aprecia tanto en las entradas y salidas de la caja negra de `Modos`.
 
 ## Botones
 
-![Boton_AR Caja Negra](<Imagenes/Boton_AR Caja Negra.png>)
+<img src="Imagenes/Boton_AR Caja Negra.png" alt="Boton_AR Caja Negra" width="500">
 
 La **Caja negra** que lleva por nombre `Boton_AR` se debe a que es la encargada de filtrar el ruido que envia un boton al ser pulsado, esto se logra gracias a que una vez se pulse el boton este debe permanecer pulsado un determinado tiempo, el cual se logra gracias al *clk*, para asi despues de tener un determinado tiempo pulsado la entrada *Boton_In* cambie el estado de la salida *Boton_Out*.
 
-![Botones_antirrebote Caja Negra](<Imagenes/Botones_antirrebote Caja Negra.jpg>)
+<img src="Imagenes/Botones_antirrebote Caja Negra.jpg" alt="Botones_antirrebote Caja Negra" width="500">
 
 Utilizando lo realizado en `Boton_AR` se logra filtrar todo el ruido que tienen todos los botones que se emplearan como lo son el *B_Reset*, *B_Test*, *B_Energia* y *B_Medicina*, con lo cual para los botones *B_Reset* y *B_Test* basta con cambiar un parametro para que se envie el registro de su respectiva señal (*Senal_Reset* y *Senal_Test*) asi como se indica en el funcionamiento del componente, por otro lado las señales de los botones que ya involucran los modos del **`tamagorchi`** pasan de señal de entrada a una de salida en un tiempo mas inmediato.
 
@@ -110,7 +110,7 @@ Utilizando lo realizado en `Boton_AR` se logra filtrar todo el ruido que tienen 
 ### Controlador: 
 La caja negra del controlador contiene internamente el SPI master, que es el encargado de controlar qué datos se envían a la pantalla. Por esta razón, se utiliza una máquina de estados dentro del controlador, ya que su operación requiere varias etapas.
 
-![ILI9341 Maquina de estados](<Imagenes/ILI9341 Maquina de estados.png>)
+<img src="Imagenes/ILI9341 Maquina de estados.png" alt="ILI9341 Maquina de estados" width="500">
 
 El estado inicial es `START`, que cambia inmediatamente a `SEND_INIT` a menos que haya una señal de `rst`. Los estados `SEND_INIT` (primer comando para reiniciar la pantalla), `SEND_CONFIG` (una lista de 84 comandos a ejecutar guardados en `INIT_SEQ_LEN`), `DISPLAY_ON` (configuración para encender la pantalla), `SET_ROTATION` (configuración para la rotación de la pantalla) y `SET_ADDRESS` (configuración para establecer la dirección del píxel) se utilizan para configurar inicialmente la pantalla. En todos estos estados, `available_data = 1`, indicando que hay datos disponibles para enviar.
 
@@ -145,6 +145,6 @@ Para la implementación, se pasó cada imagen a formato RGB mediante un código 
 
 Luego esto se pega en `Imagenes.txt`que es la memoria que esta leyendo la FPGA. Para implementarlo en el proyecto se hizo la siguiente tabla.
 
-<img src="Imagenes/EstadosImagenes.png" alt="EstadosImagenes" width="400">
+<img src="Imagenes/EstadosImagenes.png" alt="EstadosImagenes" width="500">
 
 De esta manera, al momento de realizar el cambio de imagen, el valor de `pixel_memoria` se ajusta para apuntar a la línea donde se definió la nueva imagen. Una vez que se completa la escritura de la línea modificada, el offset vuelve a 0, y el resto de la imagen sigue mostrándose con los datos de IDLE. Este enfoque fue diseñado para optimizar el uso de la memoria en la FPGA, minimizando el espacio necesario para almacenar las imágenes.
