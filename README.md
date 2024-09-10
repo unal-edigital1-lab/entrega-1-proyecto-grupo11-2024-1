@@ -124,7 +124,7 @@ Este módulo carga el contenido de un archivo  .txt en la memoria interna del si
 Es importante mencionar que esta división busca el valor entero inferior, es decir, por ejemplo, que 1/5 = 0, lo que permite que varios píxeles de la pantalla correspondan a un solo píxel en memoria.
 La división del `counter_vertical` se multiplica por 48 para que, por cada fila (de 48 píxeles), se le sume el valor del `counter horizontal`. 
 
-![Fórmula LaTeX](<Imagenes/Formula_pixel_memoria.png>)
+![Fórmulapixel_memoria LaTeX](<Imagenes/Formula_pixel_memoria.png>)
 
 Después de haber definido `pixel_memoria` se lee el valor del píxel en `pixel_data_mem`  en la poscisión `pixel_memoria`, donde por cada pixel 1x1 definido en  `pixel_data_mem[pixel_memoria]` se van a escribir 5x5 en la pantalla.
 
@@ -134,17 +134,15 @@ Todas las imágenes del Tamagotchi son bastante similares, y solo hay pequeñas 
 
 Para cambiar entre las imágenes, se utiliza el concepto de "offset". La transición comienza dibujando la imagen IDLE en la pantalla. Sin embargo, cuando `pixelactual` aalcanza la línea donde la imagen debe cambiar, el offset se ajusta. El valor del offset se calcula como la diferencia entre la posición de inicio de la nueva imagen y el valor de  `pixelactual` en la cuadricula 48x48.
 
-![Fórmula LaTeX](<Imagenes/Formula_offset.png>)
+![Fórmulaoffset LaTeX](<Imagenes/Formula_offset.png>)
 
 
 Para la implementación, se pasó cada imagen a formato RGB mediante un código en Python llamado convert2pixels, que escribe cada imagen en un archivo .txt. En cada archivo .txt de las imágenes, se copian los píxeles desde donde comienza el cambio hasta donde termina. Para saber qué línea representa un píxel específico, se utiliza la siguiente ecuación:
 
-![Fórmula LaTeX](<Imagenes/Fomula_pixeles.png>)
+![Fórmulapixeles LaTeX](<Imagenes/Fomula_pixeles.png>)
 
 Luego esto se pega en `Imagenes.txt`que es la memoria que esta leyendo la FPGA. Para implementarlo en el proyecto se hizo la siguiente tabla.
 
-![Fórmula LaTeX](<Imagenes/EstadosImagenes.png>)
-
-Luego, los datos generados se pegan en `Imagenes.txt`, que es el archivo de memoria leído por la FPGA.
+<img src="Imagenes/EstadosImagenes.png" alt="EstadosImagenes" width="200">
 
 De esta manera, al momento de realizar el cambio de imagen, el valor de `pixel_memoria` se ajusta para apuntar a la línea donde se definió la nueva imagen. Una vez que se completa la escritura de la línea modificada, el offset vuelve a 0, y el resto de la imagen sigue mostrándose con los datos de IDLE. Este enfoque fue diseñado para optimizar el uso de la memoria en la FPGA, minimizando el espacio necesario para almacenar las imágenes.
