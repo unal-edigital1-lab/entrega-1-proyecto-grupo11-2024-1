@@ -1,7 +1,27 @@
-# Entrega 1 del proyecto WP01
+# Entrega del proyecto Tamagotchi `Eris` 
 - Stewart Andres Antolinez Zapata `santolinez@unal.edu.co` 
 - Natalia Andrea Dueñas Salamanca `nduenass@unal.edu.co`
 - Juan Diego Saenz Ardila `jsaenza@unal.edu.co` 
+
+
+## Introducción 
+
+En el proyecto final del curso de Electrónica Digital 1, se presenta la culminación del proceso de aprendizaje a través de la integración de los fundamentos y aplicaciones avanzadas de la electrónica digital. Se ponen en práctica conceptos clave como la representación de datos, la lógica combinacional y secuencial, las máquinas de estado algorítmico, las unidades de control y el datapath.
+
+El objetivo principal de este proyecto es aplicar todos estos conocimientos en el diseño y creación de una mascota virtual, el `"Tamagotchi"`, que simula el cuidado de una mascota real. Para lograr esto, se utilizan entradas como sensores, botones y otros dispositivos que modifican el comportamiento de la mascota virtual. Estos cambios se reflejan mediante salidas visuales que muestran detalles de los aspectos principales del `"Tamagotchi"`, tales como su ánimo, salud, descanso y cantidad de comida. La visualización de estos aspectos se realiza mediante LEDs, displays y una pantalla, lo que permite una interacción más dinámica y clara con el estado de la mascota.
+
+
+|Componente|Referencia|Imagen|Funcionalidad|
+|--|--|--|--|
+|FPGA | Ciclones IV EP4CE10E22C8N|<img src="Imagenes/FPGA EP4CE6E22C8N.webp" width="95"> | Brindar todos los componentes logicos para la descripción de hardware realizada | 
+|Tarjeta de desarrollo| A-C4E6|<img src="Imagenes/Tarjeta_De_Desarrollo.jpg" width="95">|Conexion de entradas y salidas del tamagotchi|
+|Botones|B0D178CN81|<img src="Imagenes/Botones FPGA.png" width="95">|Entrada de pulsadores con el cual modificar el funcionamiento del tamagotchi|
+|Sensor Ultra Sonido|HC-SR04|<img src="Imagenes/Ultra_Sonido_Componente.png" width="95">|Detección de un objeto a una distancia menor a 10 cm para modificar el Nivel Animo|
+|Sensor de Luz|LDR Fotoresistor|<img src="Imagenes/Sensor_De_Luz_Componente.jpg" width="95">| Detecciíon de determinada ausencia de luz con el fin de modificar el Nivel Descanso|
+|Panatalla|ILI9341|<img src="Imagenes\ILI9341.jpg" width="95">| Visualización de la mascota virtual permitiendo conocer su estado, necesidades e interacción en el momento
+|Displays 7 segmentos|Anodo Comun|<img src="Imagenes\Displays FPGA.png" width="95">| Permite la visualizacion de detalles mas especificos del estado de la mascota virtual como lo es el nivel de sus modos, el estado en el que se encuentra y el contador Test
+
+
 
 
 
@@ -11,14 +31,9 @@
 
 * `Test`: Activa el modo de prueba al mantener pulsado por al menos 5 segundos, permitiendo al usuario navegar entre los diferentes estados del Tamagotchi con cada pulsación. Este sera un boton de la tarjeta de desarrollo de la FPGA.
 
-![Botones tarjeta de desarrollo FPGA](<Imagenes/Botones FPGA.png>)
-
 * `Boton_Comida`: al presionar el botón destinado para cuidar la alimentación del tamagotchi. Cada vez que lo hagas, el nivel de comida aumentará en 1 (si no está en el nivel máximo). Además, durante los siguientes 5 segundos, verás una visualización especial: si tu Tamagotchi está hambriento o desnutrido, aparecerá una imagen que representa que está comiendo.
 
 * `Boton_Medicina`: al presionar el botón destinado para cuidar la salud del tamagotchi. Cada vez que lo hagas, el nivel de salud aumentará en 1 (si no está en el nivel máximo). Además, durante los siguientes 5 segundos, verás una visualización especial: si tu Tamagotchi está en los estados de tos o fiebre, aparecerá una imagen que representa que está recibiendo una píldora para mejorar su salud. 
-
-![Pulsadores](Imagenes/Pulsadores.png)
-
 
 
 **Sensores**
@@ -32,14 +47,30 @@
 
 * `Sensor de Luz`: cuando este sensor detecte sombra o una determinada ausencia de luz aumenta el nivel de decanso, y durante el tiempo que que el sensor este registrando esa ausencia de luz este mostrara una visualización determinada para ese caso. Modulo Sensor De Luz Con Ldr Fotoresistor.
 
-![Modulo Sensor De Luz Con Ldr Fotoresistor](<Imagenes/Modulo Sensor De Luz Con Ldr Fotoresistor.jpg>)
 
 ## Componentes de Visualización
 
 * `Pantalla ILI9341`: 
 El componente ILI9341 es una pantalla TFT que se utiliza en el proyecto para mostrar los distintos estados del Tamagotchi. Cada vez que el Tamagotchi cambia de estado, la pantalla ILI9341 actualiza su visualización para reflejar estos cambios, proporcionando una interfaz gráfica interactiva que mejora la experiencia del usuario con el juego. Esta visualización dinámica permite a los jugadores observar el estado actual del Tamagotchi, facilitando una interacción más inmersiva y efectiva con el juego.
 
-![ILI9341](Imagenes/ILI9341.jpg)
+
+## Visualización de estados
+
+
+|Estado|Imagenes|Detalles|
+|--|--|--|
+|Ideal|![alt text](Pollito/0Idle.png)|Todos los niveles se encuentran en su puntuación maxima la cual es 3|
+|Hambre y  Desnutrición|![alt text](Pollito/1Hambre.png)|El Nivel de Comida se encuntra menor a 3|
+|Comiendo|![alt text](Pollito/3Comiendo.png)|Se pulso el boton de dar comida|
+|Tos|![alt text](Pollito/4Tos.png)|El Nivel de Salud se encuentra menor a 3|
+|Pildora|![alt text](Pollito/6Pildora.png)|Se pulso el boton de dar medicina|
+|Cansado|![alt text](Pollito/7Cansado1.png)|El Nivel de Descanso se encuentra menor a 3|
+|Dormido|![alt text](Pollito/9Dormido.png)|El Sensor de Luz detecto ausencia luminica por aproximadamente 2.5 segundos|
+|Triste|![alt text](Pollito/11Depresivo.png)|En Nivel de Animo se encuentra menor a 3|
+|Carisia|![alt text](Pollito/12Carisia.png)|El Sensor Ultra Sonido detecto algo menor a 10 cm por aproximadamente 2.5 segundos|
+
+
+
 
 # Tamagotchi
 
@@ -58,6 +89,103 @@ La maquina de estados finitos parte desde un estado IDLE donde recibe informaci�
 Observando cada uno de los estados generales se compone de 3 estados, uno transitorio que se activa al utilizar el sensor o boton de ese respectivo estado, y los otros 2 dependientes del nivel, en el estado donde el Nivel es 0 se tenia considerada visualización distinta, sin embargo, debido a los recursos de la FPGA esta opción fue descartada. Cada estado transitorio se mantendrá durante 5 segundos, para luego cambiar al estado correspondiente segun el nuevo nivel.
 
 En esta forma especifica se muestra que el boton test también controla el comportamiento, este se mueve entre cada uno de los estados internos para después volver a IDLE, por medio del registro cambio_test cambiara a otros 3 estados distintos al ser presionado, esto si previamente ya se ha activado el modo test, pulsandolo por 5 segundos.
+
+
+## Descripción de Hardware de la Maquina de estados
+
+La máquina de estados implementada se utiliza principalmente para cambiar entre los diferentes modos del Tamagotchi, permitiendo que dichos cambios sean visibles mediante la representación de los niveles e imágenes que reflejan el estado actual de la mascota virtual. De esta manera, se controlan las acciones permitidas o no en cada estado.
+
+El funcionamiento de la máquina de estados se compone de dos partes fundamentales: la **lógica combinacional** y la **lógica secuencial**, las cuales se pueden observar en los siguientes ejemplos presentes en [Máquina de Estados](Codigos/Codigo_FPGA/Maquina_Estados_1.v).
+
+A continuación, presentamos la organización de los estados que fueron implementados. Sin embargo, es importante destacar que el estado de "muerte" no fue incluido debido a la falta de recursos lógicos.
+
+```verilog
+
+localparam Estado_IDLE       = 4'b0000; // PERFECTO 0
+
+localparam Estado_Hambre     = 4'b0001; // COMIDA   1
+localparam Estado_Desnutrido = 4'b0010; // COMIDA   2
+localparam Estado_Comiendo   = 4'b0011; // COMIDA   3
+
+localparam Estado_Tos        = 4'b0100; // SALUD    4
+localparam Estado_Fiebre     = 4'b0101; // SALUD    5
+localparam Estado_Pildora    = 4'b0110; // SALUD    6
+
+localparam Estado_Cansado    = 4'b0111; // DESCANSO 7
+localparam Estado_Desvelo    = 4'b1000; // DESCANSO 8
+localparam Estado_Dormido    = 4'b1001; // DESCANSO 9
+
+localparam Estado_Triste     = 4'b1010; // ANIMO    10
+localparam Estado_Depresion  = 4'b1011; // ANIMO    11
+localparam Estado_Carisia    = 4'b1100; // ANIMO    12
+
+localparam Estado_Muerte     = 4'b1101; //GAME OVER
+
+```
+
+Como se puede observar en el siguiente fragmento, la lógica combinacional implementada da prioridad a los estados de la siguiente manera: primero, el estado de **hambre**, relacionado con la comida; luego, el estado de **tos**, relacionado con la salud; después, el estado de **cansancio**, relacionado con el descanso; y finalmente, con la prioridad más baja, el estado de **tristeza**, relacionado con el ánimo de nuestra mascota virtual.
+
+Esta lógica se logró mediante la configuración de parámetros importantes, como el valor de la señal `_Senal_Mtest_`, que puede estar en 1 o 0. Dependiendo de este valor, se evalúa si el nivel es inferior a 3 o si el botón de prueba (Test) fue pulsado y su contador se encuentra dentro de alguno de los valores predefinidos.
+
+Gracias a esta combinación de condiciones y al cumplimiento de los parámetros establecidos, la mascota virtual permanecerá en el mismo estado o cambiará de estado según la información que llegue a `_Estado_Siguiente_`. Esto permite la navegación fluida entre los estados, ya sea en el modo normal o en el modo de prueba (Test).
+
+
+```verilog 
+// Lógica combinacional para determinar el siguiente estado
+    always @(*) begin
+        case (Estados)
+            Estado_IDLE: begin
+                if (((Nivel_Comida < 3)&(~Senal_MTest))||((Senal_MTest)&(cambio_test==1)))
+                    Estado_Siguiente <= Estado_Hambre;
+                else if (((Nivel_Salud < 3)&(~Senal_MTest))||((cambio_test==5)&(Senal_MTest)))
+                    Estado_Siguiente <= Estado_Tos;
+                else if (((Nivel_Descanso < 3)&(~Senal_MTest))||((cambio_test==9)&(Senal_MTest)))
+							Estado_Siguiente <= Estado_Cansado;
+					 else if (((Nivel_Animo < 3)&(~Senal_MTest))||((cambio_test==12)&(Senal_MTest)))
+                    Estado_Siguiente <= Estado_Triste;
+					 else 
+                    Estado_Siguiente <= Estado_IDLE;
+            end
+```
+
+De esta manera, se logró que el Tamagotchi pueda permanecer en un estado mientras ocurren otras actividades que pueden provocar un cambio en el estado actual. Este mismo enfoque se aplicó para gestionar los cambios en los demás estados que posee la mascota virtual.
+
+No obstante, es igualmente necesario detallar qué sucede dentro de cada estado. Lo más relevante es definir qué periféricos estarán activos cuando la mascota se encuentre en un estado específico, así como la visualización que será enviada a las salidas del sistema, tal y como se muestra a continuación:
+
+
+```verilog
+ Estado_Dormido: begin
+    Activo_Comida <= 1'b0;
+    Activo_Medicina <= 1'b0;
+    Activo_SensorLuz <= 1'b0;
+    Activo_UltraSonido <= 1'b0;
+    Visualizacion <= 4'b1001;
+            if(Senal_MTest) begin
+                    Activo_Comida <= 1'b0;
+                    Activo_Medicina <= 1'b0;	
+                    Activo_SensorLuz <= 1'b0;
+                    Activo_UltraSonido <= 1'b0;							
+                end
+        end
+// ANIMO
+Estado_Triste: begin 
+    Activo_Comida <= 1'b1;
+    Activo_Medicina <= 1'b1;
+    Activo_SensorLuz <= 1'b1;
+    Activo_UltraSonido <= 1'b1;
+    Visualizacion <= 4'b1010;
+            if(Senal_MTest) begin
+                    Activo_Comida <= 1'b0;
+                    Activo_Medicina <= 1'b0;	
+                    Activo_SensorLuz <= 1'b0;
+                    Activo_UltraSonido <= 1'b0;							
+                end
+        end
+```
+Se puede observar que cada estado tiene una visualización diferente y que, además, los periféricos activos varían. Esto se hace con el objetivo de que el Tamagotchi no pueda realizar múltiples actividades simultáneamente, logrando así un funcionamiento coherente de la mascota virtual. De esta forma, se determina que algunas señales cambiarán sus valores dependiendo del estado en el que se encuentre.
+
+
+
 # Diagramas de caja negra de los componentes y maquinas de Estado
 
 ## Ultra Sonido
@@ -154,3 +282,27 @@ Luego esto se pega en `Imagenes.txt`que es la memoria que esta leyendo la FPGA. 
 <img src="Imagenes/EstadosImagenes.png" alt="EstadosImagenes" width="500">
 
 De esta manera, al momento de realizar el cambio de imagen, el valor de `pixel_memoria` se ajusta para apuntar a la línea donde se definió la nueva imagen. Una vez que se completa la escritura de la línea modificada, el offset vuelve a 0, y el resto de la imagen sigue mostrándose con los datos de IDLE. Este enfoque fue diseñado para optimizar el uso de la memoria en la FPGA, minimizando el espacio necesario para almacenar las imágenes.
+
+
+## Implementación 
+
+A continuación se presenta las imagenes para el seguimiento de las conexiones realizadas ademas de poder distinguir la ubicación exacta de cada uno de los niveles, los LEDs relevantes para el funcionamiento de la mascota y lo botones implementados para la interacción con la mascota:
+
+Video de la implementación y funcionamiento de la mascota virtual Tamagotchi: [Video Funcionamiento Entraga Proyecto](https://drive.google.com/file/d/1n6FFo-EZXdqhuXAefXDavkJpkuG4kCIa/view?usp=sharing)
+
+<img src="Imagenes\Pin_Planer_Hardware.png" width="500">
+
+<img src="Imagenes/Pin_planer_proyecto_final.png" width="500">
+
+
+
+
+## Conclusiones
+
+* La optimización de las funcionalidades de cada componente dentro del proyecto es crucial debido al alto uso de componentes lógicos, especialmente por la implementación de la pantalla y el cambio entre imágenes, que requieren un procesamiento significativo al manejar imágenes muy diferentes entre sí.
+
+* Se realizó una investigación exhaustiva que permitió comprender el funcionamiento de los distintos periféricos, destacando la importancia de utilizar parámetros que aseguren una adecuada sincronización de los relojes entre los diferentes componentes. Esto fue especialmente relevante para la pantalla `ILI9341` y el sensor de `Ultrasonido`.
+
+* El uso de la herramienta de simulación `GTKWave` fue altamente eficiente, permitiendo identificar comportamientos no deseados, verificar conexiones y optimizar el tiempo de desarrollo.
+
+* Se recomienda el uso de procesadores para mejorar la implementación, ofreciendo mayor libertad en el uso de recursos lógicos. Esto facilitaría la utilización de otros tipos de controladores (perifericos), permitiendo un funcionamiento más dinámico y atractivo para el usuario.
