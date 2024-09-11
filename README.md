@@ -37,7 +37,7 @@ El objetivo principal de este proyecto es aplicar todos estos conocimientos en e
 
 
 **Sensores**
-* `Sensor Ultra sonido`: Utiliza el sensor de ultrasonido HC-SR04. Cuando este sensor detecte algo a una distancia menor a un umbral determinado, aumentará el nivel de ánimo de tu mascota virtual. Además, durante el tiempo en que el sensor esté activo y detectando objetos cercanos, verás una visualización específica en la pantalla. Pero eso no es todo: si tu Tamagotchi se encuentra en los estados de tristeza o depresión, cuando la señal del sensor sea 1, verás una imagen que representa a tu Tamagotchi recibiendo cariño. Si esta señal persiste durante 15 segundos o más, el nivel de cariño subirá en 1 (a menos que ya esté en el nivel máximo).
+* `Sensor Ultra sonido`: Utiliza el sensor de ultrasonido HC-SR04. Cuando este sensor detecte algo a una distancia menor a un umbral determinado, aumentará el nivel de ánimo de la mascota virtual. Además, durante el tiempo en que el sensor esté activo y detectando objetos cercanos, verás una visualización específica en la pantalla. Pero eso no es todo: si el Tamagotchi se encuentra en los estados de tristeza o depresión, cuando la señal del sensor sea 1, verás una imagen que representa al Tamagotchi recibiendo cariño. Si esta señal persiste durante 2.5 segundos o más, el nivel de cariño subirá en 1 (a menos que ya esté en el nivel máximo).
 
 
 <img src="Imagenes/Working-of-HC-SR04-Ultrasonic-Sensor-1024x394.jpg"  width="300">
@@ -71,8 +71,6 @@ El componente ILI9341 es una pantalla TFT que se utiliza en el proyecto para mos
 
 
 
-
-# Tamagotchi
 
 # Caja Negra
 
