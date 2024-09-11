@@ -328,6 +328,9 @@ Luego esto se pega en `Imagenes.txt`que es la memoria que esta leyendo la FPGA. 
 
 De esta manera, al momento de realizar el cambio de imagen, el valor de `pixel_memoria` se ajusta para apuntar a la línea donde se definió la nueva imagen. Una vez que se completa la escritura de la línea modificada, el offset vuelve a 0, y el resto de la imagen sigue mostrándose con los datos de IDLE. Este enfoque fue diseñado para optimizar el uso de la memoria en la FPGA, minimizando el espacio necesario para almacenar las imágenes.
 
+<img src="Imagenes\TestBench_Transición_Imagen.jpeg">
+
+El parámetro visual oscila rápidamente entre 0 y 3. No obstante, solo cuando la señal transmission_Done se encuentra activa (en 1), el valor cambia a 3. Esto indica que primero se transmite la imagen 0, y una vez finalizada su transmisión, se procede a transmitir la imagen 3. Así se garantiza que la imagen 0 se complete antes de pasar a la siguiente.
 
 ## Implementación 
 
