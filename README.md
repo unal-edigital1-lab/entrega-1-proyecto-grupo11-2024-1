@@ -18,7 +18,7 @@ El objetivo principal de este proyecto es aplicar todos estos conocimientos en e
 |Botones|B0D178CN81|<img src="Imagenes/Botones FPGA.png" width="95">|Entrada de pulsadores con el cual modificar el funcionamiento del tamagotchi|
 |Sensor Ultra Sonido|HC-SR04|<img src="Imagenes/Ultra_Sonido_Componente.png" width="95">|Detección de un objeto a una distancia aproximadamente menor a 20 cm para modificar el Nivel Animo|
 |Sensor de Luz|LDR Fotoresistor|<img src="Imagenes/Sensor_De_Luz_Componente.jpg" width="95">| Detecciíon de determinada ausencia de luz con el fin de modificar el Nivel Descanso|
-|Panatalla|ILI9341|<img src="Imagenes\ILI9341.jpg" width="95">| Visualización de la mascota virtual permitiendo conocer su estado, necesidades e interacción en el momento
+|Pantalla|ILI9341|<img src="Imagenes\ILI9341.jpg" width="95">| Visualización de la mascota virtual permitiendo conocer su estado, necesidades e interacción en el momento
 |Displays 7 segmentos|Anodo Comun|<img src="Imagenes\Displays FPGA.png" width="95">| Permite la visualizacion de detalles mas especificos del estado de la mascota virtual como lo es el nivel de sus modos, el estado en el que se encuentra y el contador Test
 
 
