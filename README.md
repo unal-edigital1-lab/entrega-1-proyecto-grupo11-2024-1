@@ -90,15 +90,21 @@ Los modos poseen 2 cosas de manera esencial que va con un objetivo de definir el
 
 Esta parte convergen bastantes compornentes debido a que `Modos` utiliza otras cajas negras adicionales las cuales son `Botones_antirrebote` y `Modo_Primitivo` que permitiran unir el funcinamiento de los botones, los sensores y que estos cumplan la funcinalidad para subir el nivel, pero que en tal caso que no se utilicen bajen el nivel, y esto ya se cumple para todos los modos que pasa el tamagotchi, tal y como se aprecia tanto en las entradas y salidas de la caja negra de `Modos`.
 
-## Botones
+## Botones y sensores
 
 <img src="Imagenes/Boton_AR Caja Negra.png" alt="Boton_AR Caja Negra" width="500">
 
 La **Caja negra** que lleva por nombre `Boton_AR` se debe a que es la encargada de filtrar el ruido que envia un boton al ser pulsado, esto se logra gracias a que una vez se pulse el boton este debe permanecer pulsado un determinado tiempo, el cual se logra gracias al *clk*, para asi despues de tener un determinado tiempo pulsado la entrada *Boton_In* cambie el estado de la salida *Boton_Out*.
 
-<img src="Imagenes/Botones_antirrebote Caja Negra.jpg" alt="Botones_antirrebote Caja Negra" width="500">
+<img src="Imagenes/Sensor_AR.png" alt="Sensor_AR Caja Negra" width="500">
 
-Utilizando lo realizado en `Boton_AR` se logra filtrar todo el ruido que tienen todos los botones que se emplearan como lo son el *B_Reset*, *B_Test*, *B_Energia* y *B_Medicina*, con lo cual para los botones *B_Reset* y *B_Test* basta con cambiar un parametro para que se envie el registro de su respectiva señal (*Senal_Reset* y *Senal_Test*) asi como se indica en el funcionamiento del componente, por otro lado las señales de los botones que ya involucran los modos del **`tamagorchi`** pasan de señal de entrada a una de salida en un tiempo mas inmediato.
+La **Caja negra** que lleva por nombre `Sensor_AR` se debe a que es la encargada de filtrar el ruido que envia un sensor al ser activado, esto se logra gracias a que una vez se active el sensor este debe permanecer activo un determinado tiempo, para asi despues de tener un determinado tiempo pulsado la entrada *sensor_in* cambie el estado de la salida *sensor_out*. Sin embargo, a diferencia de botones antirebote, si pasa al menos un ciclo de reloj en 1, la salida se vuelve 1. 
+
+<img src="Imagenes/Botones_antirrebote Caja Negra.png" alt="Botones_antirrebote Caja Negra" width="500">
+
+Utilizando lo realizado en `Boton_AR` y `Sensor_AR` se logra filtrar todo el ruido que tienen todos los botones y sensores que se emplearan como lo son el *B_Reset*, *B_Test*, *B_Energia* , *B_Medicina*, *Sensor_fotocelda* y *Sensor_ultrasonido* .  Estos generan salidas que pasaran por un detector de flancos de bajada (con excepción de salida test y la salida reset_tmp), que seran usadas en la caja modos para poder detectar los flancos. Es necesario aclarar que segun la entrada el parametro de tiempo cambia, un ejemplo es test_tmp donde el parametro es de 10000 ciclos de reloj para que detecte las pulsaciones y testMT_tmp donde el parametro de 5 segundos en total.
+
+Los flancos de bajada de la salida test seran detectados en la caja contador test, que al detectarlo le sumara 1 al registro cambio_test.
 
 ## ILI9341
 
