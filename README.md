@@ -309,6 +309,10 @@ La división del `counter_vertical` se multiplica por 48 para que, por cada fila
 
 Después de haber definido `pixel_memoria` se lee el valor del píxel en `pixel_data_mem`  en la poscisión `pixel_memoria`, donde por cada pixel 1x1 definido en  `pixel_data_mem[pixel_memoria]` se van a escribir 5x5 en la pantalla.
 
+<img src="Imagenes\TestBench_Transición_Imagen.jpeg">
+
+Es importante destacar que algunos aspectos de esta simulación difieren de la implementación final, ya que está limitada por el tiempo de simulación permitido por el computador. No obstante, se puede observar un correcto funcionamiento del escalamiento, pues se demuestra claramente cómo el valor de current_pixel permanece constante a lo largo de 3 píxeles. Esto se debe a que se está escalando una imagen de 80x80 a 240x240, lo que significa que un píxel de 1x1 en la imagen original corresponde a un píxel de 3x3 en la imagen escalada. Este comportamiento se puede visualizar claramente en el contador de píxeles (pixel_counter). Además, al comparar el valor de current_pixel con el archivo Imagenes.txt, se verifica que la línea correspondiente al número de pixel_memoria es la correcta para el píxel en cuestión.
+
 
 **Transición imagenes:** 
 Todas las imágenes del Tamagotchi son bastante similares, y solo hay pequeñas secciones donde varían en comparación con la imagen IDLE. La imagen IDLE tiene un desplazamiento (offset) de 0, ya que comienza en la posición 0 de la memoria. Las demás imágenes están almacenadas a partir de la posición 2304, que es donde termina la imagen IDLE en la memoria.
@@ -330,7 +334,7 @@ De esta manera, al momento de realizar el cambio de imagen, el valor de `pixel_m
 
 <img src="Imagenes\TestBench_Transición_Imagen.jpeg">
 
-El parámetro visual oscila rápidamente entre 0 y 3. No obstante, solo cuando la señal transmission_Done se encuentra activa (en 1), el valor cambia a 3. Esto indica que primero se transmite la imagen 0, y una vez finalizada su transmisión, se procede a transmitir la imagen 3. Así se garantiza que la imagen 0 se complete antes de pasar a la siguiente.
+Se puede observar un correcto funcionamiento de la transición de la imagen, pues dado el parámetro `visua` se va a dar el cambio de la imagen a tráves de `fms_state` (0 IDLE, 1 HAMBRIENTO ,etc). Para evitar que las imagenes se sobrepongan se utiliza el parametro `transmission_Done`para que espere a colocar toda una imagen en la pantalla para luego cambiar de imagen. Esto se puede ver con el parámetro visual oscila rápidamente entre 0 y 3. No obstante, solo cuando la señal transmission_Done se encuentra activa (en 1), el valor cambia a 3. Esto indica que primero se transmite la imagen 0, y una vez finalizada su transmisión, se procede a transmitir la imagen 3. Así se garantiza que la imagen 0 se complete antes de pasar a la siguiente.
 
 ## Implementación 
 
