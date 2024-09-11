@@ -191,11 +191,11 @@ Se puede observar que cada estado tiene una visualización diferente y que, adem
 
 En esta simulación se demuestra un aspecto bastante importante y es el cambio de estado gracias a la bajada de nivel que presentan en ese aspecto se nota como estos estados van a ir cambiando, y de esta misma manera va a ir cambian dentro de cada modo, y ya cuando se tienen unidos todos los estados de cada uno de los modos se tendran una simulación mas colosal.
 
-<img src="Imagenes\TestBench_Maquina_De_Estados.jpeg" width="500">
+<img src="Imagenes\TestBench_Maquina_De_Estados.jpeg">
 
 En este caso es importante observar como el reset tambien modifica el estado en el que se encuentra volviendo al estado inicial independientemente de donde se encuentre.
 
-<img src="Imagenes\TestBench_Maquina_De_Estados_3.jpeg" width="500">
+<img src="Imagenes\TestBench_Maquina_De_Estados_3.jpeg">
 
 Por ultimo tambien se consigue observar el cambio de niveles gracias a la interacción directa con la mascota virtual gracias a los sensores y botones, tiendo un estado extra en cada modo y ademas subiendo el nivel que en determinados casos tambien cambiara el estado que se apresiba antes del estado de las acciones.
 
@@ -232,7 +232,7 @@ Cuando la señal `Echo` se apaga, el sistema regresa al estado IDLE, y el ciclo 
 Los modos poseen 2 cosas de manera esencial que va con un objetivo de definir el comportamiento de la salida *Nivel* la cual corresponde a la **Caja negra** de `Modo_Primitivo`, la cual posee un *activo* que permitira que ese modo suba o baje de *Nivel*, por otro lado junto al *clk* permitira que despues de un determinado tiempo el modo baje de *Nivel* de uno en uno mientras que gracias a *Entrada_Sube_Nivel* como su nombre lo indica aumenta el *Nivel* de uno en uno siempre y cuando no se encuentre en el *Nivel* maximo.
 
 
-<img src="Imagenes\TestBench_Modo_Primitivo.jpeg" width="500">
+<img src="Imagenes\TestBench_Modo_Primitivo.jpeg" >
 
 En el funcionamiento del `Modo_Primitivo` que es la base del funcionamiento de todos los modos se aprecia como es el comportamiento de los niveles gracias a cosas como la entrada y el mimso contador que maneja internamente
 
@@ -248,7 +248,7 @@ La caja negra que lleva por nombre Boton_AR se encarga de filtrar el ruido que e
 
 
 
-<img src="Imagenes\TestBench_Boton_AR.jpeg" alt="Boton_AR Caja Negra" width="500">
+<img src="Imagenes\TestBench_Boton_AR.jpeg" alt="Boton_AR Caja Negra" >
 
 En la imagen anterior se aprecia la simulacion realizada en GTKWave donde se aprecia el funcionamiento adecuado debido a que una vez el boton sea pulsado debe permanecer un determinado tiempo para enviar la señal de que este se activo y ese mismo tiempo es el que necesita para dar a conocer que se dejo de pulsar.
 
@@ -259,7 +259,7 @@ En la imagen anterior se aprecia la simulacion realizada en GTKWave donde se apr
 La caja negra que lleva por nombre Sensor_AR se encarga de filtrar el ruido que envía un sensor al ser activado. Esto se consigue haciendo que, una vez activado el sensor, permanezca activo durante un tiempo determinado. Después de mantener la entrada sensor_in activa durante ese tiempo, se cambiará el estado de la salida sensor_out. Sin embargo, a diferencia de los botones antirrebote, si el sensor permanece al menos un ciclo de reloj en 1, la salida también se vuelve 1.
 
 
-<img src="Imagenes\TestBench_Sensor_AR.jpeg" width="500">
+<img src="Imagenes\TestBench_Sensor_AR.jpeg" >
 
 Ahora para la comprobación del funcionamiento por medio de la simulación se puede apreciar como la implementación de `Sensor_AR` es necesaria porque a pesar de su similitud con `Boton_AR` este se puede apreciar que funciona diferente debido a que la señal de salida posee un determinado Delay para que esta cambie cuando el sensor comienza a detectar algo, sin embargo cuando el sensor dejar de recibir señal inmediatamente la señal de salida tambien cambia.
 
