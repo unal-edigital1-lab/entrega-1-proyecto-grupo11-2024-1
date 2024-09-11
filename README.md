@@ -81,14 +81,17 @@ El componente ILI9341 es una pantalla TFT que se utiliza en el proyecto para mos
 
 # Máquina de Estados
 
+
 ![caja negra](Imagenes/MEF_resumida.png)
 
-La maquina de estados finitos parte desde un estado IDLE donde recibe información de todos los sensores y botones . Si el nivel de cualquier modo baja a 2 va al estado de este nivel (el orden de prioridad es: comida, salud, descanso y animo) . Es necesario aclarar que estos estados tienen 3 estados internos que seran explicados en la maquina de estados finitos visto de una forma más detallada (según el estado el parametró de visualización que sera entregado). La única forma de volver a IDLE sin el reset o el test, es volviendo a tener un nivel igual a 3 en ese estado. 
+La máquina de estados finitos parte desde un estado IDLE, donde recibe información de todos los sensores y botones. Si el nivel de cualquier modo baja a 2, va al estado correspondiente a ese nivel (el orden de prioridad es: comida, salud, descanso y ánimo). Es necesario aclarar que estos estados tienen 3 estados internos que serán explicados en la máquina de estados finitos de forma más detallada (según el estado, el parámetro de visualización que será entregado). La única forma de volver a IDLE sin el reset o el test es volviendo a tener un nivel igual a 3 en ese estado.
+
+
 ![caja negra](Imagenes/MEF_general.png)
 
-Observando cada uno de los estados generales se compone de 3 estados, uno transitorio que se activa al utilizar el sensor o boton de ese respectivo estado, y los otros 2 dependientes del nivel, en el estado donde el Nivel es 0 se tenia considerada visualización distinta, sin embargo, debido a los recursos de la FPGA esta opción fue descartada. Cada estado transitorio se mantendrá durante 5 segundos, para luego cambiar al estado correspondiente segun el nuevo nivel.
+Observando cada uno de los estados generales, se compone de 3 estados: uno transitorio, que se activa al utilizar el sensor o botón del respectivo estado, y los otros 2 dependen del nivel. En el estado donde el nivel es 0 se había considerado una visualización distinta; sin embargo, debido a los recursos de la FPGA, esta opción fue descartada. Cada estado transitorio se mantendrá durante 5 segundos, para luego cambiar al estado correspondiente según el nuevo nivel.
 
-En esta forma especifica se muestra que el boton test también controla el comportamiento, este se mueve entre cada uno de los estados internos para después volver a IDLE, por medio del registro cambio_test cambiara a otros 3 estados distintos al ser presionado, esto si previamente ya se ha activado el modo test, pulsandolo por 5 segundos.
+En esta forma específica, se muestra que el botón de prueba (test) también controla el comportamiento. Este se mueve entre cada uno de los estados internos para después volver a IDLE. A través del registro cambio_test, cambiará a otros 3 estados distintos al ser presionado, siempre que previamente ya se haya activado el modo de prueba (test) pulsándolo durante 5 segundos.
 
 
 ## Descripción de Hardware de la Máquina de estados
@@ -222,17 +225,17 @@ Esta parte convergen bastantes compornentes debido a que `Modos` utiliza otras c
 
 <img src="Imagenes/Boton_AR Caja Negra.png" alt="Boton_AR Caja Negra" width="500">
 
-La **Caja negra** que lleva por nombre `Boton_AR` se debe a que es la encargada de filtrar el ruido que envia un boton al ser pulsado, esto se logra gracias a que una vez se pulse el boton este debe permanecer pulsado un determinado tiempo, el cual se logra gracias al *clk*, para asi despues de tener un determinado tiempo pulsado la entrada *Boton_In* cambie el estado de la salida *Boton_Out*.
+La caja negra que lleva por nombre Boton_AR se encarga de filtrar el ruido que envía un botón al ser pulsado. Esto se logra gracias a que, una vez pulsado, el botón debe permanecer activado durante un tiempo determinado, lo cual se consigue mediante el clk. Así, después de mantener pulsada la entrada Boton_In durante ese tiempo, se cambiará el estado de la salida Boton_Out.
 
 <img src="Imagenes/Sensor_AR.png" alt="Sensor_AR Caja Negra" width="500">
 
-La **Caja negra** que lleva por nombre `Sensor_AR` se debe a que es la encargada de filtrar el ruido que envia un sensor al ser activado, esto se logra gracias a que una vez se active el sensor este debe permanecer activo un determinado tiempo, para asi despues de tener un determinado tiempo pulsado la entrada *sensor_in* cambie el estado de la salida *sensor_out*. Sin embargo, a diferencia de botones antirebote, si pasa al menos un ciclo de reloj en 1, la salida se vuelve 1. 
+La caja negra que lleva por nombre Sensor_AR se encarga de filtrar el ruido que envía un sensor al ser activado. Esto se consigue haciendo que, una vez activado el sensor, permanezca activo durante un tiempo determinado. Después de mantener la entrada sensor_in activa durante ese tiempo, se cambiará el estado de la salida sensor_out. Sin embargo, a diferencia de los botones antirrebote, si el sensor permanece al menos un ciclo de reloj en 1, la salida también se vuelve 1.
 
 <img src="Imagenes/Botones_antirrebote Caja Negra.png" alt="Botones_antirrebote Caja Negra" width="500">
 
-Utilizando lo realizado en `Boton_AR` y `Sensor_AR` se logra filtrar todo el ruido que tienen todos los botones y sensores que se emplearan como lo son el *B_Reset*, *B_Test*, *B_Energia* , *B_Medicina*, *Sensor_fotocelda* y *Sensor_ultrasonido* .  Estos generan salidas que pasaran por un detector de flancos de bajada (con excepción de salida test y la salida reset_tmp), que seran usadas en la caja modos para poder detectar los flancos. Es necesario aclarar que segun la entrada el parametro de tiempo cambia, un ejemplo es test_tmp donde el parametro es de 10000 ciclos de reloj para que detecte las pulsaciones y testMT_tmp donde el parametro de 5 segundos en total.
+Utilizando lo desarrollado en Boton_AR y Sensor_AR, se logra filtrar todo el ruido de los botones y sensores que se emplearán, tales como B_Reset, B_Test, B_Energia, B_Medicina, Sensor_fotocelda y Sensor_ultrasonido. Estos generan salidas que pasarán por un detector de flancos de bajada (con excepción de la salida test y la salida reset_tmp), que serán usadas en la caja de modos para detectar los flancos. Es importante aclarar que, según la entrada, el parámetro de tiempo varía. Por ejemplo, en test_tmp, el parámetro es de 10,000 ciclos de reloj para detectar las pulsaciones, mientras que en testMT_tmp, el parámetro es de 5 segundos en total.
 
-Los flancos de bajada de la salida test seran detectados en la caja contador test, que al detectarlo le sumara 1 al registro cambio_test.
+Los flancos de bajada de la salida test serán detectados en la caja de contador de prueba, la cual, al detectarlos, sumará 1 al registro cambio_test.
 
 ## ILI9341
 
