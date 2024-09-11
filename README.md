@@ -16,7 +16,7 @@ El objetivo principal de este proyecto es aplicar todos estos conocimientos en e
 |FPGA | Ciclones IV EP4CE10E22C8N|<img src="Imagenes/FPGA EP4CE6E22C8N.webp" width="95"> | Brindar todos los componentes logicos para la descripción de hardware realizada | 
 |Tarjeta de desarrollo| A-C4E6|<img src="Imagenes/Tarjeta_De_Desarrollo.jpg" width="95">|Conexion de entradas y salidas del tamagotchi|
 |Botones|B0D178CN81|<img src="Imagenes/Botones FPGA.png" width="95">|Entrada de pulsadores con el cual modificar el funcionamiento del tamagotchi|
-|Sensor Ultra Sonido|HC-SR04|<img src="Imagenes/Ultra_Sonido_Componente.png" width="95">|Detección de un objeto a una distancia menor a 10 cm para modificar el Nivel Animo|
+|Sensor Ultra Sonido|HC-SR04|<img src="Imagenes/Ultra_Sonido_Componente.png" width="95">|Detección de un objeto a una distancia aproximadamente menor a 20 cm para modificar el Nivel Animo|
 |Sensor de Luz|LDR Fotoresistor|<img src="Imagenes/Sensor_De_Luz_Componente.jpg" width="95">| Detecciíon de determinada ausencia de luz con el fin de modificar el Nivel Descanso|
 |Panatalla|ILI9341|<img src="Imagenes\ILI9341.jpg" width="95">| Visualización de la mascota virtual permitiendo conocer su estado, necesidades e interacción en el momento
 |Displays 7 segmentos|Anodo Comun|<img src="Imagenes\Displays FPGA.png" width="95">| Permite la visualizacion de detalles mas especificos del estado de la mascota virtual como lo es el nivel de sus modos, el estado en el que se encuentra y el contador Test
@@ -38,8 +38,6 @@ El objetivo principal de este proyecto es aplicar todos estos conocimientos en e
 
 **Sensores**
 * `Sensor Ultra sonido`: Utiliza el sensor de ultrasonido HC-SR04. Cuando este sensor detecte algo a una distancia menor a un umbral determinado, aumentará el nivel de ánimo de tu mascota virtual. Además, durante el tiempo en que el sensor esté activo y detectando objetos cercanos, verás una visualización específica en la pantalla. Pero eso no es todo: si tu Tamagotchi se encuentra en los estados de tristeza o depresión, cuando la señal del sensor sea 1, verás una imagen que representa a tu Tamagotchi recibiendo cariño. Si esta señal persiste durante 15 segundos o más, el nivel de cariño subirá en 1 (a menos que ya esté en el nivel máximo).
-
-
 
 ![[Link](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.puntoflotante.net%2FSENSOR-DISTANCIA-PROXIMIDAD-ULTRASONICO-HC-SR04.htm&psig=AOvVaw3XawL_13PjA-c5dnOsjxe6&ust=1713975300415000&source=images&cd=vfe&opi=89978449&ved=0CBUQ3YkBahcKEwi447_b3diFAxUAAAAAHQAAAAAQEQ)](Imagenes/Working-of-HC-SR04-Ultrasonic-Sensor-1024x394.jpg)
 
@@ -79,7 +77,7 @@ El componente ILI9341 es una pantalla TFT que se utiliza en el proyecto para mos
 ![caja negra](Imagenes/caja_negra_funcionamiento.png)
 
 
-# Maquina de Estados
+# Máquina de Estados
 
 ![caja negra](Imagenes/MEF_resumida.png)
 
@@ -91,7 +89,7 @@ Observando cada uno de los estados generales se compone de 3 estados, uno transi
 En esta forma especifica se muestra que el boton test también controla el comportamiento, este se mueve entre cada uno de los estados internos para después volver a IDLE, por medio del registro cambio_test cambiara a otros 3 estados distintos al ser presionado, esto si previamente ya se ha activado el modo test, pulsandolo por 5 segundos.
 
 
-## Descripción de Hardware de la Maquina de estados
+## Descripción de Hardware de la Máquina de estados
 
 La máquina de estados implementada se utiliza principalmente para cambiar entre los diferentes modos del Tamagotchi, permitiendo que dichos cambios sean visibles mediante la representación de los niveles e imágenes que reflejan el estado actual de la mascota virtual. De esta manera, se controlan las acciones permitidas o no en cada estado.
 
