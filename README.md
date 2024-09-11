@@ -224,6 +224,13 @@ En el estado WAIT, el sistema espera recibir la señal de entrada `Echo`. Si `Ec
 Cuando la señal `Echo` se apaga, el sistema regresa al estado IDLE, y el ciclo se repite.
 
 
+A continuación los resultados de el test bench del ultrasonido. 
+
+![FórmulaUltrasonida](<Imagenes/ultrasonido_tb.jpeg>)
+
+Como se puede ver el trigger se mantiene activo durante una cantidad de tiempo y apenas pasa al estado 2, se detiene. Luego se simuló la entrada Echo, de aquí pasa del estado Wait a Wait Echo donde el registro tiempo empieza a subir y una vez alcanza cierto valor, el registro led pasa a 0. 
+
+De 3 a 1 esta el estado intermedio IDLE donde se resetean los registros y se vuelve a activar el trigger, pues trigger_done ya no es 1.
 
 ## Modos
 <img src="Imagenes/Modo_Primitivo Caja Negra.png" alt="Modo_Primitivo Caja Negra" width="500">
